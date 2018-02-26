@@ -24,13 +24,13 @@ int main(void) {
 
 //////////////////////UART0_init////////////////////////////////////////
 void UART0_init(void){
-	EUSCI_A0->CTLW0 |= 1; //put in reset mode for config
-	EUSCI_A0->MCTLW = 0; //disable oversampling
-	EUSCI_A0->CTLW0 = 0x0081; //1 stop bit, parity non, SMCK, 8 bits data
-	EUSCI_A0->BRW = 26; //baud rate 115200 (3000000/115200 = 26)
-	P1->SEL0 |= 0x0C; //P1.3 and P1.2 for UART
+	EUSCI_A0->CTLW0 |= 1; 		//put in reset mode for config
+	EUSCI_A0->MCTLW = 0; 		//disable oversampling
+	EUSCI_A0->CTLW0 = 0x0081; 	//1 stop bit, parity non, SMCK, 8 bits data
+	EUSCI_A0->BRW = 26; 		//baud rate 115200 (3000000/115200 = 26)
+	P1->SEL0 |= 0x0C; 			//P1.3 and P1.2 for UART
 	P1->SEL1 &= ~0x0C;
-	EUSCI_A0->CTLW0 &= ~1; //take UART out of reset mode
+	EUSCI_A0->CTLW0 &= ~1; 		//take UART out of reset mode
 }
 
 /////////////////////////////UART0Rx///////////////////////////////////
@@ -64,10 +64,10 @@ int fgetc(FILE *f) {
 	int c;
 	c = UART0Rx(); 				// read the character from console
 	if (c == '\r') { 			//if '\r' replace with '\n'
-		UART0Tx(c); 				// echo
+		UART0Tx(c); 			// echo
 		c = '\n'; 
 	}
-	UART0Tx(c); 					// echo
+	UART0Tx(c); 				// echo
 	return c;
 }
 

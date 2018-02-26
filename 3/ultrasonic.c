@@ -29,7 +29,8 @@ int main (void) {
 	while (1) {
 		make_trig();
 		capture_signal();
-		printf("the capture time : %d\r\n", diff);
+		// printf("the capture time : %d\r\n", diff);
+		printf("Distance : %.2f cm.\r\n", (float)diff / 23);
 		diff=0;
 		delay_ms (500);
 	}
